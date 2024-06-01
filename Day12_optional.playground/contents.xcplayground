@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' buildActiveScheme='true' importAppTypes='true'>
+    <pages>
+        <page name='1 Handling missing data'/>
+        <page name='2 Unwrapping optionals'/>
+        <page name='2 📖'/>
+        <page name='2 測驗'/>
+        <page name='3 Unwrapping with guard'/>
+        <page name='3 📖'/>
+        <page name='3 測驗'/>
+        <page name='4 Force unwrapping'/>
+        <page name='4 📖'/>
+        <page name='4 測驗'/>
+        <page name='5 Implicitly unwrapped optionals'/>
+        <page name='5 📖'/>
+        <page name='5 測驗'/>
+        <page name='6 Nil coalescing'/>
+        <page name='6 📖'/>
+        <page name='6 測驗'/>
+        <page name='7 Optional chaining'/>
+        <page name='7 📖'/>
+        <page name='7 測驗'/>
+        <page name='8 Optional try'/>
+        <page name='8 📖'/>
+        <page name='8 測驗'/>
+        <page name='9 Failable initializers'/>
+        <page name='9 📖'/>
+        <page name='9 測驗'/>
+        <page name='10 Typecasting'/>
+        <page name='10 📖'/>
+        <page name='10 測驗'/>
+        <page name='11 summary'/>
+        <page name='11 測驗'/>
+    </pages>
+</playground>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' buildActiveScheme='true' importAppTypes='true'>
+    <pages>
+        <page name='1 Creating your own classes'/>
+        <page name='1 📖'/>
+        <page name='1 測驗'/>
+        <page name='2 Class inheritance'/>
+        <page name='2 測驗'/>
+        <page name='3 Overriding methods '/>
+        <page name='3 測驗'/>
+        <page name='4 Final classes'/>
+        <page name='4 測驗'/>
+        <page name='5 Copying objects'/>
+        <page name='5 📖'/>
+        <page name='5 測驗'/>
+        <page name='6 Deinitializers'/>
+        <page name='6 測驗'/>
+        <page name='7 Mutability'/>
+        <page name='7 📖'/>
+        <page name='7 測驗'/>
+        <page name='8'/>
+    </pages>
+</playground>

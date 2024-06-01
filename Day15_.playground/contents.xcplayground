@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' display-mode='rendered' buildActiveScheme='true' importAppTypes='true'>
+    <pages>
+        <page name='1. properties'/>
+        <page name='2. Static properties and methods'/>
+        <page name='3. Access control'/>
+        <page name='4. Polymorphism and typecasting'/>
+        <page name='5. closure'/>
+    </pages>
+</playground>

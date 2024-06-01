@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' buildActiveScheme='true' importAppTypes='true'>
+    <pages>
+        <page name='1. Creating your own structs'/>
+        <page name='測驗'/>
+        <page name='1. 測驗 🎯'/>
+        <page name='2. Computed properties'/>
+        <page name='2. 測驗'/>
+        <page name='2. 測驗 🎯'/>
+        <page name='3. Property observers'/>
+        <page name='3 測試'/>
+        <page name='3. 測試 🎯'/>
+        <page name='4. Methods'/>
+        <page name='📖'/>
+        <page name='4 測試'/>
+        <page name='4. 測試🎯'/>
+        <page name='5 mutating method'/>
+        <page name='5 測試'/>
+        <page name='5. 測試 🎯'/>
+        <page name='6 Properties and methods of strings'/>
+        <page name='6 測試'/>
+        <page name='7 Properties and methods of arrays'/>
+        <page name='7 測試'/>
+    </pages>
+</playground>

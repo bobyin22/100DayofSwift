@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' buildActiveScheme='true' importAppTypes='true'>
+    <pages>
+        <page name='Untitled Page 2'/>
+        <page name='Why does Swift use parameter labels?'/>
+        <page name='7. Variadic functions '/>
+        <page name='8. Writing throwing functions'/>
+        <page name='9. Running throwing functions'/>
+        <page name='inout parameters'/>
+    </pages>
+</playground>

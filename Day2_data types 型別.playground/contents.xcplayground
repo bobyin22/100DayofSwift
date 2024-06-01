@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' buildActiveScheme='true' importAppTypes='true'>
+    <pages>
+        <page name='1. Array'/>
+        <page name='2. Set'/>
+        <page name='2. 📖'/>
+        <page name='2. 測驗'/>
+        <page name='3. Tuple'/>
+        <page name='3. Tuple 📖'/>
+        <page name='3. 測驗'/>
+        <page name='4. Array vs sets vs tuples'/>
+        <page name='4. 測驗'/>
+        <page name='5. Dictionaries'/>
+        <page name='5. 測驗'/>
+        <page name='6. Dictionary default value'/>
+        <page name='6. 測驗'/>
+        <page name='7. Creating empty collections'/>
+        <page name='7 測驗'/>
+        <page name='8. Enum'/>
+        <page name='8 測驗'/>
+        <page name='9. Enum associated values '/>
+        <page name='9 . 📖'/>
+        <page name='9. 測驗'/>
+        <page name='10. Enum raw values '/>
+        <page name='10 測驗'/>
+        <page name='11. summary'/>
+        <page name='11. 測驗'/>
+    </pages>
+</playground>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' display-mode='raw' buildActiveScheme='true' importAppTypes='true'>
+    <pages>
+        <page name='1. 測驗 Creating basic closures'/>
+        <page name='1. 測驗 🎯'/>
+        <page name='2. Accepting parameters in a closure'/>
+        <page name='2. 📖'/>
+        <page name='2. 測驗'/>
+        <page name='2. 測驗 🎯'/>
+        <page name='3. Returning values from a closure'/>
+        <page name='3. 📖'/>
+        <page name='3. 測驗'/>
+        <page name='3. 測驗🎯'/>
+        <page name='4. Closures as parameters'/>
+        <page name='4. 測驗'/>
+        <page name='4. 測驗🎯'/>
+        <page name='5. Trailing closure syntax'/>
+        <page name='Why does Swift have trailing closure syntax?'/>
+        <page name='5. 測驗'/>
+        <page name='5. 測驗🎯'/>
+    </pages>
+</playground>

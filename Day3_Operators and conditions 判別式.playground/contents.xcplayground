@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' buildActiveScheme='true' importAppTypes='true'>
+    <pages>
+        <page name='1. Arithmetic Operators'/>
+        <page name='1.1 📖 Why can’t Swift add a Double to an Int?'/>
+        <page name='1.2 📖 Why does Swift have a dedicated division remainder operator?'/>
+        <page name='1.測驗'/>
+        <page name='2. Operator overloading'/>
+        <page name='2. 測驗'/>
+        <page name='3. Compound assignment operators '/>
+        <page name='3. 測驗'/>
+        <page name='4. Comparison operators'/>
+        <page name='How does Swift let us compare many types of data?'/>
+        <page name='5. Condition'/>
+        <page name='5. 測驗'/>
+        <page name='6. Combining conditions'/>
+        <page name='6. 測驗'/>
+        <page name='7. The ternary operator'/>
+        <page name='When should you use the ternary operator in Swift?'/>
+        <page name='8. Switch statements '/>
+        <page name='9. Range operators '/>
+        <page name='Why does Swift have two range operators?'/>
+        <page name='10. 測驗'/>
+    </pages>
+</playground>

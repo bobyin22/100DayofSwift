@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' buildActiveScheme='true' importAppTypes='true'>
+    <pages>
+        <page name='For loops '/>
+        <page name='Why does Swift use underscores with loops?'/>
+        <page name='While loops'/>
+        <page name='Repeat loops'/>
+        <page name='When should you use a repeat loop? '/>
+        <page name='Exiting loops'/>
+        <page name='Why would you want to exit a loop? '/>
+        <page name='Exiting multiple loops'/>
+        <page name='Why does Swift have labeled statements?'/>
+        <page name='Skipping items '/>
+        <page name='Skipping items test'/>
+    </pages>
+</playground>

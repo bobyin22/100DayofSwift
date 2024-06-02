@@ -47,5 +47,11 @@ extension ViewController {
         cell.detailTextLabel?.text = petition.body  //每個row去吃值
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = DetailViewController()             //DetailVC是純code，所以不用storyboad push推出
+        vc.detailItem = petitions[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 

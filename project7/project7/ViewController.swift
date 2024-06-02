@@ -14,13 +14,31 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         
         //let urlString = "https://api.whitehouse.gov/va/petitions.json?limit=100"
-        let urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
+        //let urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
+        
+        let urlString: String
+        
+        if navigationController?.tabBarItem.tag == 0 {
+            urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
+        } else {
+            //urlString = "https://api.whitehouse.gov/va/petitions.json?signatureCountFloor=10000&limit=100"
+            urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
+        }
         
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url) {  //把url型別 轉型成 Data型別
                 parse(json: data)
+                return              //有解析成功跳出viewDidLoad，不走showError函式
             }
         }
+            
+        showError()                 //無解析成功，viewDidLoad繼續往下走showError函式
+    }
+    
+    func showError() {
+        let ac = UIAlertController(title: "載入失敗", message: "網路可能有問題，請檢查，再重試", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
     }
     
     func parse(json: Data) {

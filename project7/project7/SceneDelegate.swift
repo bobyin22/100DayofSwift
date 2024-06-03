@@ -13,6 +13,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
+        //建立第二個VC
+        if let tabBarController = window?.rootViewController as? UITabBarController {   //確定root是UITabBarController
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)                    //找到Storyboard Main檔案
+            let vc = storyboard.instantiateViewController(withIdentifier: "NavController")  //找到Main檔案裡面的NavController
+            vc.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 1)           //建立Tabbar tag1
+            tabBarController.viewControllers?.append(vc)                                //加入Tabbar的list中
+        }
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).

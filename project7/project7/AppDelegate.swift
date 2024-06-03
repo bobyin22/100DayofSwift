@@ -10,17 +10,19 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
+    //應該寫在SceneDelegate
+    //var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        //建立第二個VC
-        if let tabBarController = window?.rootViewController as? UITabBarController {   //確定root是UITabBarController
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)                    //找到Storyboard Main檔案
-            let vc = storyboard.instantiateViewController(withIdentifier: "NavController")  //找到Main檔案裡面的NavController
-            vc.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 1)           //建立Tabbar tag1
-            tabBarController.viewControllers?.append(vc)                                //加入Tabbar的list中
-        }
+        //應該寫在SceneDelegate
+//        //建立第二個VC
+//        if let tabBarController = window?.rootViewController as? UITabBarController {   //確定root是UITabBarController
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)                    //找到Storyboard Main檔案
+//            let vc = storyboard.instantiateViewController(withIdentifier: "NavController")  //找到Main檔案裡面的NavController
+//            vc.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 1)           //建立Tabbar tag1
+//            tabBarController.viewControllers?.append(vc)                                //加入Tabbar的list中
+//        }
         return true
     }
 

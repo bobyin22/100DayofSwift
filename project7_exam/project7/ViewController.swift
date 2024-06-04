@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UITableViewController {
     var petitions = [Petition]()      //陣列是裝所有資料，資料型別是Petition
+    var filterPetitions = [Petition]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +39,50 @@ class ViewController: UITableViewController {
     }
     
     func setupTabBarUI() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bell.square"), style: .plain, target: self, action: #selector(btnTabBarTap))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bell.square"), style: .plain, target: self, action: #selector(btnNewsFromTabBarTap))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(btnNewsFilterTabBarTap))
     }
     
-    @objc func btnTabBarTap() {
+    @objc func btnNewsFilterTabBarTap() {
+        
+        let ac  = UIAlertController(title: "篩選", message: "請輸入篩選新聞字串", preferredStyle: .alert)
+        ac.addTextField()
+        
+        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] action in
+            print("\(ac.textFields![0].text!)")
+            
+            guard let self else { return }
+            
+            for i in self.petitions {
+                print("i是 \(i)")
+                
+                var upperLetter = ""
+                for j in ac.textFields![0].text! {
+                    if j == ac.textFields![0].text!.first {
+                        upperLetter += j.uppercased()
+                    } else {
+                        upperLetter += j.lowercased()
+                    }
+                }
+                
+                //大小寫都要一起Filter，意思是說remove Remove都要一起搜
+                if i.title.contains("\(ac.textFields![0].text!)") ||  i.title.contains("\(upperLetter)") {
+                    filterPetitions.append(i)
+                }
+            }
+            
+            petitions.removeAll()
+            petitions = filterPetitions
+            print("filePetitions是 \(filterPetitions)")
+            
+            tableView.reloadData()
+        }))
+        
+        
+        present(ac, animated: true)
+    }
+    
+    @objc func btnNewsFromTabBarTap() {
         let ac = UIAlertController(title: "資料來源", message: "https://api.whitehouse.gov/va/petitions.json?limit=100", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         present(ac, animated: true)

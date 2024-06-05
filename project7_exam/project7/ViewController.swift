@@ -50,8 +50,8 @@ class ViewController: UITableViewController {
         
         ac.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] action in
             print("\(ac.textFields![0].text!)")
-            
             guard let self else { return }
+            self.filterPetitions.removeAll()
             
             for i in self.petitions {
                 print("i是 \(i)")
@@ -71,7 +71,6 @@ class ViewController: UITableViewController {
                 }
             }
             
-            petitions.removeAll()
             petitions = filterPetitions
             print("filePetitions是 \(filterPetitions)")
             

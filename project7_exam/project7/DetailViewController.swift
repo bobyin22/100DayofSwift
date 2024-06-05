@@ -19,6 +19,18 @@ class DetailViewController: UIViewController {
         view = webView
     }
     
+    ///參考文章：https://medium.com/frochu/html-meta-viewport-setting-69fbb06ed3d8
+    //可縮放
+//  <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    //不可縮放
+//  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" >
+    
+    //背景顏色
+//    @media screen and (max-width: 900px){
+//        body { background: pink;}
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let detailItem = detailItem else { return }
@@ -27,7 +39,11 @@ class DetailViewController: UIViewController {
         <html>
         <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style> body { font-size: 200%; } </style>
+        <style> body { font-size: 300%; }
+        @media screen and (max-width: 900px){
+            body { background: pink;}
+        }
+        </style>
         </head>
         <body>
         \(detailItem.body)

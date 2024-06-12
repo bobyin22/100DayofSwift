@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         cluesLabel.font = UIFont.systemFont(ofSize: 24)
         cluesLabel.text = "CLUES"
         cluesLabel.numberOfLines = 0
-        cluesLabel.backgroundColor = .red
+        cluesLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)   //cluesLabel 被犧牲掉了
         view.addSubview(cluesLabel)
         
         //左
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         answerLabel.font = UIFont.systemFont(ofSize: 24)
         answerLabel.text = "ANSWERS"
         answerLabel.numberOfLines = 0
-        answerLabel.backgroundColor = .blue
+        answerLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)  //answerLabel 被犧牲掉了
         view.addSubview(answerLabel)
         
         //中
@@ -66,6 +66,10 @@ class ViewController: UIViewController {
         clearBtn.setTitle("CLEAR", for: .normal)
         view.addSubview(clearBtn)
         
+        //下 (不當作屬性)
+        let buttonsView = UIView()
+        buttonsView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(buttonsView)
         
         NSLayoutConstraint.activate([
             scoreLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
@@ -91,7 +95,17 @@ class ViewController: UIViewController {
             clearBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 100),
             clearBtn.centerYAnchor.constraint(equalTo: submitBtn.centerYAnchor),
             clearBtn.heightAnchor.constraint(equalToConstant: 44),
+            
+            buttonsView.widthAnchor.constraint(equalToConstant: 750),
+            buttonsView.heightAnchor.constraint(equalToConstant: 320),
+            buttonsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            buttonsView.topAnchor.constraint(equalTo: submitBtn.bottomAnchor, constant: 20),
+            buttonsView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -20)
         ])
+        
+        cluesLabel.backgroundColor = .red
+        answerLabel.backgroundColor = .blue
+        buttonsView.backgroundColor = .green
     }
     
     override func viewDidLoad() {
@@ -99,5 +113,6 @@ class ViewController: UIViewController {
     }
 
 
+    
 }
 

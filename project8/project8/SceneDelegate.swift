@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  project8
 //
-//  Created by 邱慧珊 on 2024/6/5.
+//  Created by Bob on 2024/6/5.
 //
 
 import UIKit

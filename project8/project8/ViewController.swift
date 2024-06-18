@@ -139,16 +139,57 @@ class ViewController: UIViewController {
         loadLevel()
     }
     
+    //點擊下方猜謎的按鈕
     @objc func letterTapped(_ sender: UIButton) {
+        guard let buttonTitle = sender.titleLabel?.text else { return }
         
+        //把點擊的字，加入到textField中
+        currentAnswer.text = currentAnswer.text?.appending(buttonTitle)
+        activatedButtons.append(sender) //存儲使用者點擊的字
+        sender.isHidden = true          //點擊後，要隱藏，不能再讓使用者點
     }
     
+    //送出答案
     @objc func submitTapped(_ sender: UIButton) {
+        guard let answerText = currentAnswer.text else { return }
         
+        if let solutionPosition = solutions.firstIndex(of: answerText) {
+            activatedButtons.removeAll()
+            
+            var splitAnswers = answerLabel.text?.components(separatedBy: "\n")
+            splitAnswers?[solutionPosition] = answerText
+            answerLabel.text = splitAnswers?.joined(separator: "\n")    //因為選擇正確，露出答案
+            
+            currentAnswer.text = ""
+            score += 1
+            
+            if score % 7 == 0 {
+                let ac = UIAlertController(title: "Well done!", message: "Are you ready for the next level?", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
+                present(ac, animated: true)
+            }
+        }
     }
     
-    @objc func clearTapped(_ sender: UIButton) {
+    //全部答對，要換題目，分數更新
+    func levelUp(action: UIAlertAction) {
+        level += 1
         
+        solutions.removeAll(keepingCapacity: true)
+        loadLevel()
+        
+        for button in activatedButtons {
+            button.isHidden = false
+        }
+    }
+    
+    //手動清除
+    @objc func clearTapped(_ sender: UIButton) {
+        currentAnswer.text = ""
+        for button in activatedButtons {
+            button.isHidden = false     //清除後，可以再讓使用者點擊按鈕
+        }
+        activatedButtons.removeAll()
     }
 
     
@@ -224,7 +265,7 @@ class ViewController: UIViewController {
                      solutions是：
                      ["OLIVER"]
                      */
-                    solutions.append(solutionWord)
+                    solutions.append(solutionWord)      //MARK: 這裡有存答案
                     
                     /*
                      bits是：

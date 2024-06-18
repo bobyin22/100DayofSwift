@@ -18,7 +18,11 @@ class ViewController: UIViewController {
     var activatedButtons = [UIButton]() //存儲使用者點擊的拼字
     var solutions = [String]()
     
-    var score = 0
+    var score = 0 {
+        didSet {
+            scoreLabel.text = "分數是: \(score)"
+        }
+    }
     var level = 1
     
     override func loadView() {
@@ -161,7 +165,7 @@ class ViewController: UIViewController {
             answerLabel.text = splitAnswers?.joined(separator: "\n")    //因為選擇正確，露出答案
             
             currentAnswer.text = ""
-            score += 1
+            score += 1      //這裡分數增加後，didSet那邊會連動改值
             
             if score % 7 == 0 {
                 let ac = UIAlertController(title: "Well done!", message: "Are you ready for the next level?", preferredStyle: .alert)

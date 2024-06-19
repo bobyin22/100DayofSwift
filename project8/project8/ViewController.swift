@@ -126,6 +126,8 @@ class ViewController: UIViewController {
                 letterButton.addTarget(self, action: #selector(letterTapped), for: .touchUpInside)
                 let frame = CGRect(x: column * width, y: row * height, width: width, height: height)
                 letterButton.frame = frame
+                letterButton.layer.borderWidth = 1.0
+                letterButton.layer.borderColor = UIColor.lightGray.cgColor
                 
                 buttonsView.addSubview(letterButton)
                 letterButtons.append(letterButton)

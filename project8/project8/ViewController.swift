@@ -174,6 +174,10 @@ class ViewController: UIViewController {
                 ac.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
                 present(ac, animated: true)
             }
+        } else {
+            let ac = UIAlertController(title: "答錯", message: "請仔細思考", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "好的", style: .default))
+            present(ac, animated: true)
         }
     }
     

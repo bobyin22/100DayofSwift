@@ -187,16 +187,8 @@ class ViewController: UIViewController {
                 ac.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
                 present(ac, animated: true)
             }
-            
-            //如何知道7道題目都解題完畢？
-            //下方20個按鈕都hidden
-//            if score % 7 == 0 {
-//                let ac = UIAlertController(title: "Well done!", message: "Are you ready for the next level?", preferredStyle: .alert)
-//                ac.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
-//                present(ac, animated: true)
-//            }
         } else {
-            score -= 1  
+            score -= 1
             let ac = UIAlertController(title: "答錯", message: "請仔細思考", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "好的", style: .default))
             present(ac, animated: true)
@@ -210,7 +202,7 @@ class ViewController: UIViewController {
         solutions.removeAll(keepingCapacity: true)
         loadLevel()
         
-        for button in activatedButtons {
+        for button in letterButtons {
             button.isHidden = false
         }
     }

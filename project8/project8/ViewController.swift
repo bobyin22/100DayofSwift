@@ -135,7 +135,7 @@ class ViewController: UIViewController {
         }
         
         cluesLabel.backgroundColor = .red
-        answerLabel.backgroundColor = .blue
+        answerLabel.backgroundColor = .systemMint
         buttonsView.backgroundColor = .green
     }
     
@@ -155,6 +155,17 @@ class ViewController: UIViewController {
         sender.isHidden = true          //點擊後，要隱藏，不能再讓使用者點
     }
     
+    func winThisRound(arr: [String]) -> Bool {
+        for element in arr {
+            if element.contains("letters") {
+                print("還沒結束")
+                return false
+            }
+        }
+        print("本局贏了")
+        return true
+    }
+    
     //送出答案
     @objc func submitTapped(_ sender: UIButton) {
         guard let answerText = currentAnswer.text else { return }
@@ -169,12 +180,23 @@ class ViewController: UIViewController {
             currentAnswer.text = ""
             score += 1      //這裡分數增加後，didSet那邊會連動改值
             
-            if score % 7 == 0 {
+
+            //MARK: 目前問題因為activatedButtons會被removeAll所以，進入下一回合下方按鈕不會回覆變成able
+            if winThisRound(arr: splitAnswers!) == true {
                 let ac = UIAlertController(title: "Well done!", message: "Are you ready for the next level?", preferredStyle: .alert)
                 ac.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
                 present(ac, animated: true)
             }
+            
+            //如何知道7道題目都解題完畢？
+            //下方20個按鈕都hidden
+//            if score % 7 == 0 {
+//                let ac = UIAlertController(title: "Well done!", message: "Are you ready for the next level?", preferredStyle: .alert)
+//                ac.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
+//                present(ac, animated: true)
+//            }
         } else {
+            score -= 1  
             let ac = UIAlertController(title: "答錯", message: "請仔細思考", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "好的", style: .default))
             present(ac, animated: true)

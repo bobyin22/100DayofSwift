@@ -32,16 +32,16 @@ class ViewController: UITableViewController {
                     return              //有解析成功跳出viewDidLoad，不走showError函式
                 }
             }
+            self?.showError()                 //無解析成功，viewDidLoad繼續往下走showError函式
         }
-        
-            
-        showError()                 //無解析成功，viewDidLoad繼續往下走showError函式
     }
     
     func showError() {
-        let ac = UIAlertController(title: "載入失敗", message: "網路可能有問題，請檢查，再重試", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
+        DispatchQueue.main.async { [weak self] in
+            let ac = UIAlertController(title: "載入失敗", message: "網路可能有問題，請檢查，再重試", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            self?.present(ac, animated: true)
+        }
     }
     
     func parse(json: Data) {
@@ -49,10 +49,12 @@ class ViewController: UITableViewController {
         
         if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
             petitions = jsonPetitions.results   //轉型完後的json賦值給陣列
-            tableView.reloadData()
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
         }
     }
-    
 }
 
 extension ViewController {

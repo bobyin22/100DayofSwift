@@ -12,7 +12,11 @@ class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        performSelector(inBackground: #selector(fetchJson), with: nil)
+    }
+    
+    
+    @objc func fetchJson() {
         //let urlString = "https://api.whitehouse.gov/va/petitions.json?limit=100"
         //let urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
         
@@ -25,23 +29,22 @@ class ViewController: UITableViewController {
             urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
         }
         
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            if let url = URL(string: urlString) {
-                if let data = try? Data(contentsOf: url) {  //把url型別 轉型成 Data型別
-                    self?.parse(json: data)
-                    return              //有解析成功跳出viewDidLoad，不走showError函式
-                }
+        if let url = URL(string: urlString) {
+            if let data = try? Data(contentsOf: url) {  //把url型別 轉型成 Data型別
+                parse(json: data)
+                return              //有解析成功跳出viewDidLoad，不走showError函式
             }
-            self?.showError()                 //無解析成功，viewDidLoad繼續往下走showError函式
         }
+                        
+        //無解析成功，viewDidLoad繼續往下走showError函式
+        performSelector(onMainThread: #selector(showError), with: nil, waitUntilDone: false)
     }
     
-    func showError() {
-        DispatchQueue.main.async { [weak self] in
-            let ac = UIAlertController(title: "載入失敗", message: "網路可能有問題，請檢查，再重試", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
-            self?.present(ac, animated: true)
-        }
+    @objc func showError() {
+        let ac = UIAlertController(title: "載入失敗", message: "網路可能有問題，請檢查，再重試", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
+        
     }
     
     func parse(json: Data) {
@@ -49,10 +52,9 @@ class ViewController: UITableViewController {
         
         if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
             petitions = jsonPetitions.results   //轉型完後的json賦值給陣列
-            
-            DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
-            }
+            tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
+        } else {
+            performSelector(onMainThread: #selector(showError), with: nil, waitUntilDone: false)
         }
     }
 }

@@ -17,6 +17,10 @@ class ViewController: UITableViewController {
         title = "Storm View"
         navigationController?.navigationBar.prefersLargeTitles = true
         
+        performSelector(inBackground: #selector(fetchFileData), with: nil)  //資料在背景執行
+    }
+    
+    @objc func fetchFileData() {
         let fm = FileManager.default    //file System
         let path = Bundle.main.resourcePath!    //direct
         let items = try! fm.contentsOfDirectory(atPath: path)
@@ -35,13 +39,20 @@ class ViewController: UITableViewController {
         
         for item in items {
             if item.hasPrefix("nssl") {
-                pictures.append(item)
+                for iner in 0...80000 {         //items第一個項目被多次載入，讓UI變慢才可以測試
+                    pictures.append(item)
+                }
+                
             }
         }
         
+        performSelector(onMainThread: #selector(showReloadUI), with: nil, waitUntilDone: false) //UI在背景
         print(pictures)
     }
 
+    @objc func showReloadUI() {
+        tableView.reloadData()
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pictures.count
@@ -61,4 +72,3 @@ class ViewController: UITableViewController {
     }
     
 }
-

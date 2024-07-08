@@ -17,7 +17,10 @@ class ViewController: UITableViewController {
         title = "Storm View"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        performSelector(inBackground: #selector(fetchFileData), with: nil)  //資料在背景執行
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.fetchFileData()
+        }
+        //performSelector(inBackground: #selector(fetchFileData), with: nil)  //資料在背景執行
     }
     
     @objc func fetchFileData() {
@@ -46,7 +49,10 @@ class ViewController: UITableViewController {
             }
         }
         
-        performSelector(onMainThread: #selector(showReloadUI), with: nil, waitUntilDone: false) //UI在背景
+        DispatchQueue.main.async {
+            self.showReloadUI()
+        }
+        //performSelector(onMainThread: #selector(showReloadUI), with: nil, waitUntilDone: false) //UI在背景
         print(pictures)
     }
 

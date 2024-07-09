@@ -28,14 +28,18 @@ class ViewController: UITableViewController {
             urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
         }
         
-        if let url = URL(string: urlString) {
-            if let data = try? Data(contentsOf: url) {  //把url型別 轉型成 Data型別
-                parse(json: data)
-                return              //有解析成功跳出viewDidLoad，不走showError函式
+        DispatchQueue.global(qos: .userInitiated).async {
+            if let url = URL(string: urlString) {
+                if let data = try? Data(contentsOf: url) {  //把url型別 轉型成 Data型別
+                    self.parse(json: data)
+                    return              //有解析成功跳出viewDidLoad，不走showError函式
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.showError()                 //無解析成功，viewDidLoad繼續往下走showError函式
+                }
             }
         }
-            
-        showError()                 //無解析成功，viewDidLoad繼續往下走showError函式
     }
     
     func setupTabBarUI() {
@@ -51,30 +55,40 @@ class ViewController: UITableViewController {
         ac.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] action in
             print("\(ac.textFields![0].text!)")
             guard let self else { return }
-            self.filterPetitions.removeAll()
             
-            for i in self.petitions {
-                print("i是 \(i)")
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.filterPetitions.removeAll()
                 
-                var upperLetter = ""
-                for j in ac.textFields![0].text! {
-                    if j == ac.textFields![0].text!.first {
-                        upperLetter += j.uppercased()
-                    } else {
-                        upperLetter += j.lowercased()
+                for i in self.petitions {
+                    print("i是 \(i)")
+                    
+                    var upperLetter = ""
+                    DispatchQueue.main.async {
+                        for j in ac.textFields![0].text! {
+                            if j == ac.textFields![0].text!.first {
+                                upperLetter += j.uppercased()
+                            } else {
+                                upperLetter += j.lowercased()
+                            }
+                        }
+                    }
+                    
+                    DispatchQueue.main.async {
+                        //大小寫都要一起Filter，意思是說remove Remove都要一起搜
+                        if i.title.contains("\(ac.textFields![0].text!)") ||  i.title.contains("\(upperLetter)") {
+                            self.filterPetitions.append(i)
+                        }
                     }
                 }
                 
-                //大小寫都要一起Filter，意思是說remove Remove都要一起搜
-                if i.title.contains("\(ac.textFields![0].text!)") ||  i.title.contains("\(upperLetter)") {
-                    filterPetitions.append(i)
+                self.petitions = self.filterPetitions
+                print("filePetitions是 \(self.filterPetitions)")
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
                 }
             }
             
-            petitions = filterPetitions
-            print("filePetitions是 \(filterPetitions)")
-            
-            tableView.reloadData()
         }))
         
         
@@ -98,7 +112,9 @@ class ViewController: UITableViewController {
         
         if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
             petitions = jsonPetitions.results   //轉型完後的json賦值給陣列
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     

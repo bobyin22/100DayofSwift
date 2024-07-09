@@ -142,7 +142,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadLevel()
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.loadLevel()
+        }
+        
     }
     
     //點擊下方猜謎的按鈕
@@ -306,29 +309,33 @@ class ViewController: UIViewController {
             }
         }
         
-        /*
-         cluesLabel.text是：把\n去掉
-         "1. Has a Dickensian twist\n" (舊)
-         1. Has a Dickensian twist (新)
-         */
-        cluesLabel.text = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        /*
-         answerLabel.text是：
-         6 letters
-         */
-        answerLabel.text = solutionString.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        //把下方按鈕UI位置重洗
-        letterButtons.shuffle()
-        
-        
-        //當for (index, line) in lines.enumerated() 所有迴圈走完，會變成陣列有20個元素，["OLI", "VER", "HA", "UNT, "ED", .......]
-        if letterButtons.count == letterBits.count {
-            for i in 0..<letterButtons.count {
-                letterButtons[i].setTitle(letterBits[i], for: .normal)
+        DispatchQueue.main.async {
+            /*
+             cluesLabel.text是：把\n去掉
+             "1. Has a Dickensian twist\n" (舊)
+             1. Has a Dickensian twist (新)
+             */
+            self.cluesLabel.text = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            /*
+             answerLabel.text是：
+             6 letters
+             */
+            self.answerLabel.text = solutionString.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            //把下方按鈕UI位置重洗
+            self.letterButtons.shuffle()
+            
+            
+            //當for (index, line) in lines.enumerated() 所有迴圈走完，會變成陣列有20個元素，["OLI", "VER", "HA", "UNT, "ED", .......]
+            if self.letterButtons.count == letterBits.count {
+                for i in 0..<self.letterButtons.count {
+                    self.letterButtons[i].setTitle(letterBits[i], for: .normal)
+                }
             }
         }
+        
     }
     
 }

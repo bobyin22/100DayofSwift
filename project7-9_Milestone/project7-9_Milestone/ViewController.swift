@@ -11,8 +11,12 @@ class ViewController: UIViewController {
     
     var allWords = [String]()
     
+    var letterBtns = [UIButton]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup20Btn()
+        
         //拿取txt檔案
         if let startWordsUrl = Bundle.main.url(forResource: "level1", withExtension: "txt") {
             if let startWords = try? String(contentsOf: startWordsUrl) {
@@ -38,6 +42,56 @@ class ViewController: UIViewController {
     ///  4.2 不同，hangMan 多一個UIView的線條
     
 
+    func setup20Btn() {
+     let width = 150
+        let height = 80
+        for row in 0..<4 {
+            for column in 0..<5 {
+                let letterBtn = UIButton(type: .system)
+                letterBtn.setTitle("WWW", for: .normal)
+                let frame = CGRect(x: column * width, y: row * height, width: width, height: height)
+                letterBtn.frame = frame
+                letterBtn.layer.borderWidth = 0.5
+                letterBtn.layer.borderColor = UIColor(red: 1/255, green: 1/255, blue: 1/255, alpha: 1).cgColor
+
+                view.addSubview(letterBtn)
+                letterBtns.append(letterBtn)
+            }
+        }
+    }
 
 }
 
+
+/*
+ apple
+ book
+ cat
+ dog
+ elephant
+ fish
+ girl
+ house
+ icecream
+ juice
+ kite
+ lion
+ moon
+ night
+ ocean
+ pencil
+ queen
+ rain
+ sun
+ tree
+ umbrella
+ violin
+ water
+ xray
+ yellow
+ zebra
+ computer
+ dream
+ flower
+ mountain
+ */

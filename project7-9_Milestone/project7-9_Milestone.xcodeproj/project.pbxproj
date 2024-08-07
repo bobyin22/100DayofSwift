@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4FB9BDC52C61EA9500155967 /* level1.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4FB9BDC42C61EA9500155967 /* level1.rtf */; };
+		4FB9BE332C633B1500155967 /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FB9BE322C633B1500155967 /* level1.txt */; };
 		A81961D12C50CDF1008EFC0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81961D02C50CDF1008EFC0A /* AppDelegate.swift */; };
 		A81961D32C50CDF1008EFC0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81961D22C50CDF1008EFC0A /* SceneDelegate.swift */; };
 		A81961D52C50CDF1008EFC0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81961D42C50CDF1008EFC0A /* ViewController.swift */; };
@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4FB9BDC42C61EA9500155967 /* level1.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = level1.rtf; path = ../../../level1.rtf; sourceTree = "<group>"; };
+		4FB9BE322C633B1500155967 /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = level1.txt; path = ../../../level1.txt; sourceTree = "<group>"; };
 		A81961CD2C50CDF1008EFC0A /* project7-9_Milestone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "project7-9_Milestone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A81961D02C50CDF1008EFC0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A81961D22C50CDF1008EFC0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 				A81961D92C50CDF3008EFC0A /* Assets.xcassets */,
 				A81961DB2C50CDF3008EFC0A /* LaunchScreen.storyboard */,
 				A81961DE2C50CDF3008EFC0A /* Info.plist */,
-				4FB9BDC42C61EA9500155967 /* level1.rtf */,
+				4FB9BE322C633B1500155967 /* level1.txt */,
 			);
 			path = "project7-9_Milestone";
 			sourceTree = "<group>";
@@ -129,7 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A81961DA2C50CDF3008EFC0A /* Assets.xcassets in Resources */,
-				4FB9BDC52C61EA9500155967 /* level1.rtf in Resources */,
+				4FB9BE332C633B1500155967 /* level1.txt in Resources */,
 				A81961DD2C50CDF3008EFC0A /* Base in Resources */,
 				A81961D82C50CDF1008EFC0A /* Base in Resources */,
 			);

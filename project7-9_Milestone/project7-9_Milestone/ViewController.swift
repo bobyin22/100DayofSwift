@@ -13,6 +13,13 @@ class ViewController: UIViewController {
     
     var letterBtns = [UIButton]()
     
+    var quizTextField: UITextField = {
+       let textFiled = UITextField()
+        textFiled.backgroundColor = .white
+        textFiled.translatesAutoresizingMaskIntoConstraints = false
+        return textFiled
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup20Btn()
@@ -29,6 +36,9 @@ class ViewController: UIViewController {
             allWords = ["no access success"]
         }
         print("allWords是：", allWords)
+        
+        //顯示題目
+        setupTextFieldUI()
     }
     
     /// 1. 丟入資料
@@ -58,6 +68,19 @@ class ViewController: UIViewController {
                 letterBtns.append(letterBtn)
             }
         }
+    }
+    
+    func setupTextFieldUI() {
+        //quizTextField.text = allWords.first
+        quizTextField.placeholder = allWords.first
+
+        view.addSubview(quizTextField)
+        NSLayoutConstraint.activate([
+            quizTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            quizTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            quizTextField.widthAnchor.constraint(equalToConstant: 80),
+            quizTextField.heightAnchor.constraint(equalToConstant: 100),
+        ])
     }
 
 }

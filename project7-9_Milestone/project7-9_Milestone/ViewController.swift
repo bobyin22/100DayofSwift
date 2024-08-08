@@ -13,12 +13,20 @@ class ViewController: UIViewController {
     
     var letterBtns = [UIButton]()
     
+    let quizHintLable: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     var quizTextField: UITextField = {
        let textFiled = UITextField()
         textFiled.backgroundColor = .white
         textFiled.translatesAutoresizingMaskIntoConstraints = false
         return textFiled
     }()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +46,14 @@ class ViewController: UIViewController {
         print("allWords是：", allWords)
         
         //顯示題目
+        setupLabelUI()
         setupTextFieldUI()
+        
     }
     
     /// 1. 丟入資料
     ///  1.1 Data拿取資料
-    ///  1.2 UILabel顯示資料
+    ///  1.2 UILabel顯示資料 (如果是Hello 會變成 ?????)
     /// 2. UITextField空白
     /// 3. 建立26個英文字按鈕
     ///  3.1. 點擊英文字按鈕 UITextField一個一個字浮出現
@@ -70,14 +80,32 @@ class ViewController: UIViewController {
         }
     }
     
+    func setupLabelUI() {
+        guard let quiz = allWords.randomElement() else { return }
+        print(quiz, quiz.count, type(of: quiz), type(of: quiz.count))
+        var mark = "?"
+        for i in 1...quiz.count {
+            mark += "?"
+        }
+        quizHintLable.text = mark
+        
+        view.addSubview(quizHintLable)
+        NSLayoutConstraint.activate([
+            quizHintLable.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            quizHintLable.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            quizHintLable.widthAnchor.constraint(equalToConstant: 80),
+            quizHintLable.heightAnchor.constraint(equalToConstant: 100),
+        ])
+    }
+    
     func setupTextFieldUI() {
         //quizTextField.text = allWords.first
         quizTextField.placeholder = allWords.first
 
         view.addSubview(quizTextField)
         NSLayoutConstraint.activate([
+            quizTextField.topAnchor.constraint(equalTo: quizHintLable.bottomAnchor, constant: 15),
             quizTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            quizTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             quizTextField.widthAnchor.constraint(equalToConstant: 80),
             quizTextField.heightAnchor.constraint(equalToConstant: 100),
         ])

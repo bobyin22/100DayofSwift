@@ -7,17 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4FB9BE332C633B1500155967 /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FB9BE322C633B1500155967 /* level1.txt */; };
 		A81961D12C50CDF1008EFC0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81961D02C50CDF1008EFC0A /* AppDelegate.swift */; };
 		A81961D32C50CDF1008EFC0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81961D22C50CDF1008EFC0A /* SceneDelegate.swift */; };
 		A81961D52C50CDF1008EFC0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81961D42C50CDF1008EFC0A /* ViewController.swift */; };
 		A81961D82C50CDF1008EFC0A /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A81961D72C50CDF1008EFC0A /* Base */; };
 		A81961DA2C50CDF3008EFC0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A81961D92C50CDF3008EFC0A /* Assets.xcassets */; };
 		A81961DD2C50CDF3008EFC0A /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A81961DC2C50CDF3008EFC0A /* Base */; };
+		A8B737B32C76324C004B31D1 /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = A8B737B22C76324C004B31D1 /* level1.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4FB9BE322C633B1500155967 /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = level1.txt; path = ../../../level1.txt; sourceTree = "<group>"; };
 		A81961CD2C50CDF1008EFC0A /* project7-9_Milestone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "project7-9_Milestone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A81961D02C50CDF1008EFC0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A81961D22C50CDF1008EFC0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +25,7 @@
 		A81961D92C50CDF3008EFC0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A81961DC2C50CDF3008EFC0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A81961DE2C50CDF3008EFC0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8B737B22C76324C004B31D1 /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +65,7 @@
 				A81961D92C50CDF3008EFC0A /* Assets.xcassets */,
 				A81961DB2C50CDF3008EFC0A /* LaunchScreen.storyboard */,
 				A81961DE2C50CDF3008EFC0A /* Info.plist */,
-				4FB9BE322C633B1500155967 /* level1.txt */,
+				A8B737B22C76324C004B31D1 /* level1.txt */,
 			);
 			path = "project7-9_Milestone";
 			sourceTree = "<group>";
@@ -129,7 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A81961DA2C50CDF3008EFC0A /* Assets.xcassets in Resources */,
-				4FB9BE332C633B1500155967 /* level1.txt in Resources */,
+				A8B737B32C76324C004B31D1 /* level1.txt in Resources */,
 				A81961DD2C50CDF3008EFC0A /* Base in Resources */,
 				A81961D82C50CDF1008EFC0A /* Base in Resources */,
 			);
@@ -302,8 +302,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -311,9 +310,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bobyin.project7-9-Milestone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -330,8 +331,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -339,9 +339,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bobyin.project7-9-Milestone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

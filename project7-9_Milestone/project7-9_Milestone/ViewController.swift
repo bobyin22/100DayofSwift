@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let buttonsView = UIView()
+    
     var allWords = [String]()
     
     var letterBtns = [UIButton]()
@@ -22,6 +24,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBottomView()
         setup20Btn()
         
         //拿取txt檔案
@@ -39,6 +42,19 @@ class ViewController: UIViewController {
         
         //顯示題目
         setupTextFieldUI()
+    }
+    
+    func setupBottomView() {
+        buttonsView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(buttonsView)
+        NSLayoutConstraint.activate([
+            buttonsView.widthAnchor.constraint(equalToConstant: 750),
+            buttonsView.heightAnchor.constraint(equalToConstant: 320),
+            buttonsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            buttonsView.topAnchor.constraint(equalTo: view.centerYAnchor, constant: 20),
+            buttonsView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -20)
+        ])
+        buttonsView.backgroundColor = .green
     }
     
     /// 1. 丟入資料
@@ -64,7 +80,7 @@ class ViewController: UIViewController {
                 letterBtn.layer.borderWidth = 0.5
                 letterBtn.layer.borderColor = UIColor(red: 1/255, green: 1/255, blue: 1/255, alpha: 1).cgColor
 
-                view.addSubview(letterBtn)
+                buttonsView.addSubview(letterBtn)
                 letterBtns.append(letterBtn)
             }
         }
@@ -77,7 +93,7 @@ class ViewController: UIViewController {
         view.addSubview(quizTextField)
         NSLayoutConstraint.activate([
             quizTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            quizTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            quizTextField.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             quizTextField.widthAnchor.constraint(equalToConstant: 80),
             quizTextField.heightAnchor.constraint(equalToConstant: 100),
         ])

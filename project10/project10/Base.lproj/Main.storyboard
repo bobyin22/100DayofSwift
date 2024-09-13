@@ -30,26 +30,26 @@
                                     <rect key="frame" x="0.0" y="0.0" width="140" height="180"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="arrowshape.left.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="09U-1N-a8m">
-                                            <rect key="frame" x="59.333333333333336" y="81.333333333333343" width="21.333333333333336" height="17.666666666666671"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gm1-oq-XgS">
-                                            <rect key="frame" x="52.666666666666671" y="120.33333333333333" width="34.666666666666671" height="17.666666666666671"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gm1-oq-XgS">
+                                            <rect key="frame" x="52.666666666666664" y="152.33333333333334" width="34.666666666666679" height="17.666666666666657"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="09U-1N-a8m">
+                                            <rect key="frame" x="30" y="50" width="80" height="80"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Gm1-oq-XgS" firstAttribute="top" secondItem="09U-1N-a8m" secondAttribute="bottom" constant="20" id="JZ5-3X-txk"/>
-                                        <constraint firstItem="09U-1N-a8m" firstAttribute="centerY" secondItem="2Eo-Zd-SbM" secondAttribute="centerY" id="RYD-Lx-bY0"/>
-                                        <constraint firstItem="Gm1-oq-XgS" firstAttribute="centerX" secondItem="09U-1N-a8m" secondAttribute="centerX" id="aUO-YJ-mj5"/>
-                                        <constraint firstItem="09U-1N-a8m" firstAttribute="centerX" secondItem="2Eo-Zd-SbM" secondAttribute="centerX" id="kVj-vy-1Dv"/>
-                                    </constraints>
                                 </collectionViewCellContentView>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
                                 <size key="customSize" width="140" height="180"/>
+                                <connections>
+                                    <outlet property="imageView" destination="09U-1N-a8m" id="11o-rh-BSW"/>
+                                    <outlet property="name" destination="Gm1-oq-XgS" id="Niu-dU-Byk"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -83,7 +83,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrowshape.left.fill" catalog="system" width="128" height="104"/>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

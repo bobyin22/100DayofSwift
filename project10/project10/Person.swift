@@ -8,11 +8,11 @@
 import UIKit
 
 class Person: NSObject {
-    var naem: String
+    var name: String
     var image: String
     
-    init(naem: String, image: String) {
-        self.naem = naem
+    init(name: String, image: String) {
+        self.name = name
         self.image = image
     }
     

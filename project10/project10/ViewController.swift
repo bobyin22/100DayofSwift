@@ -62,19 +62,22 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         }
         
         //刪除
-        let cancelAction = UIAlertAction(title: "刪除",
-                                         style: .cancel) { [weak self] _ in
+        let deleteAction = UIAlertAction(title: "刪除",
+                                         style: .default) { [weak self] _ in
             guard let self = self else { return }
             //裡面多一個Alert
             self.people.remove(at: indexPath.row)
             self.collectionView.reloadData()
         }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel)
         
         let alert = UIAlertController(title: "你的決定",
               message: nil,
-              preferredStyle: .alert)
-        alert.addAction(cancelAction)   //加入刪除動作
+              preferredStyle: .actionSheet)
+        alert.addAction(deleteAction)   //加入刪除動作
         alert.addAction(renameAction)   //加入重新命名動作
+        alert.addAction(cancelAction)   //加入取消動作
+
         
              
         self.present(alert, animated: true)
@@ -82,6 +85,7 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
     
     @objc func addNewPerson() {
         let picker = UIImagePickerController()
+        picker.sourceType = .camera
         picker.allowsEditing = true
         picker.delegate = self
         present(picker, animated: true)

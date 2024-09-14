@@ -41,6 +41,44 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         return cell
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let person = people[indexPath.item]
+                
+        //重新命名
+        let renameAction = UIAlertAction(title: "重新命名拉",
+                                         style: .default) { (action) in
+            //裡面多一個Alert
+            let ac = UIAlertController(title: "重新命名", message: nil, preferredStyle: .alert)
+            ac.addTextField()
+            
+            ac.addAction(UIAlertAction(title: "OK", style: .default) { [weak self, weak ac] _ in
+                guard let newName = ac?.textFields?[0].text else { return }
+                person.name = newName
+                self?.collectionView.reloadData()
+            })
+            
+            ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            self.present(ac, animated: true)
+        }
+        
+        //刪除
+        let cancelAction = UIAlertAction(title: "刪除",
+                                         style: .cancel) { (action) in
+            //裡面多一個Alert
+            self.people.remove(at: indexPath.row)
+            self.collectionView.reloadData()
+        }
+        
+        let alert = UIAlertController(title: "你的決定",
+              message: nil,
+              preferredStyle: .alert)
+        alert.addAction(cancelAction)   //加入刪除動作
+        alert.addAction(renameAction)   //加入重新命名動作
+        
+             
+        self.present(alert, animated: true)
+    }
+    
     @objc func addNewPerson() {
         let picker = UIImagePickerController()
         picker.allowsEditing = true
@@ -75,22 +113,6 @@ extension ViewController: UIImagePickerControllerDelegate {
         print("getDocumentsDirectory方法 paths", paths)
         print("getDocumentsDirectory方法 paths[0]", paths[0])
         return paths[0]
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let person = people[indexPath.item]
-        
-        let ac = UIAlertController(title: "重新命名", message: nil, preferredStyle: .alert)
-        ac.addTextField()
-        
-        ac.addAction(UIAlertAction(title: "OK", style: .default) { [weak self, weak ac] _ in
-            guard let newName = ac?.textFields?[0].text else { return }
-            person.name = newName
-            self?.collectionView.reloadData()
-        })
-        
-        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        present(ac, animated: true)
     }
 }
 

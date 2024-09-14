@@ -52,9 +52,9 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
             ac.addTextField()
             
             ac.addAction(UIAlertAction(title: "OK", style: .default) { [weak self, weak ac] _ in
-                guard let newName = ac?.textFields?[0].text else { return }
+                guard let newName = ac?.textFields?[0].text, let self = self else { return }
                 person.name = newName
-                self?.collectionView.reloadData()
+                self.collectionView.reloadData()
             })
             
             ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
@@ -63,7 +63,8 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         
         //刪除
         let cancelAction = UIAlertAction(title: "刪除",
-                                         style: .cancel) { (action) in
+                                         style: .cancel) { [weak self] _ in
+            guard let self = self else { return }
             //裡面多一個Alert
             self.people.remove(at: indexPath.row)
             self.collectionView.reloadData()

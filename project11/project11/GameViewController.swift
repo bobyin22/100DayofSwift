@@ -2,7 +2,7 @@
 //  GameViewController.swift
 //  project11
 //
-//  Created by 邱慧珊 on 2024/9/14.
+//  Created by Bob on 2024/9/14.
 //
 
 import UIKit

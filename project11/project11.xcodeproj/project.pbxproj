@@ -14,6 +14,7 @@
 		A80AD8532C9540BC008A70F8 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A80AD8522C9540BC008A70F8 /* Base */; };
 		A80AD8552C9540BD008A70F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A80AD8542C9540BD008A70F8 /* Assets.xcassets */; };
 		A80AD8582C9540BD008A70F8 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A80AD8572C9540BD008A70F8 /* Base */; };
+		A8C161C52CAB70130050FCA6 /* FireParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = A8C161C42CAB70130050FCA6 /* FireParticles.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		A80AD8522C9540BC008A70F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A80AD8542C9540BD008A70F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A80AD8572C9540BD008A70F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A8C161C42CAB70130050FCA6 /* FireParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = FireParticles.sks; path = "../../Sample resource/HackingWithSwift-main/Classic/project11-files/Content/FireParticles.sks"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				A80AD8512C9540BC008A70F8 /* Main.storyboard */,
 				A80AD8542C9540BD008A70F8 /* Assets.xcassets */,
 				A80AD8562C9540BD008A70F8 /* LaunchScreen.storyboard */,
+				A8C161C42CAB70130050FCA6 /* FireParticles.sks */,
 			);
 			path = project11;
 			sourceTree = "<group>";
@@ -128,6 +131,7 @@
 			files = (
 				A80AD84A2C9540BC008A70F8 /* GameScene.sks in Resources */,
 				A80AD8532C9540BC008A70F8 /* Base in Resources */,
+				A8C161C52CAB70130050FCA6 /* FireParticles.sks in Resources */,
 				A80AD8552C9540BD008A70F8 /* Assets.xcassets in Resources */,
 				A80AD8582C9540BD008A70F8 /* Base in Resources */,
 			);

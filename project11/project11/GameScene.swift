@@ -8,6 +8,10 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    
+    //建立一個陣列，用random方式讀取內容
+    var ballArray = ["ballBlue", "ballCyan", "ballGreen", "ballGrey", "ballPurple", "ballRed", "ballYellow"]
+    
     var scoreLabel: SKLabelNode!
     
     var score = 0 {
@@ -84,11 +88,11 @@ class GameScene: SKScene {
                 box.physicsBody?.isDynamic = false
                 addChild(box)
             } else {
-                let ball = SKSpriteNode(imageNamed: "ballRed")
+                let ball = SKSpriteNode(imageNamed: ballArray.randomElement()!)
                 ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
                 ball.physicsBody?.restitution = 0.4
                 ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0  //Delegate設定
-                ball.position = location
+                ball.position = CGPoint(x: location.x, y: 760)  //location 是手指碰螢幕位置
                 ball.name = "ball"
                 addChild(ball)
             }

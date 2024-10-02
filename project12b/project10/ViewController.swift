@@ -14,6 +14,21 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
+        
+        // 讀取UserDefault
+        let defaults = UserDefaults.standard
+        
+        // 讀取UserDefault key people內的資料
+        if let savePeople = defaults.object(forKey: "people") as? Data {
+            let jsonDecoder = JSONDecoder()
+            
+            do {
+                // decode UserDefault key people內的資料 賦值給 people 變數
+                people = try jsonDecoder.decode([Person].self, from: savePeople)
+            } catch {
+                print("Failed to load people")
+            }
+        }
     }
     
 
@@ -54,6 +69,7 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
             ac.addAction(UIAlertAction(title: "OK", style: .default) { [weak self, weak ac] _ in
                 guard let newName = ac?.textFields?[0].text, let self = self else { return }
                 person.name = newName
+                self.save()
                 self.collectionView.reloadData()
             })
             
@@ -108,6 +124,7 @@ extension ViewController: UIImagePickerControllerDelegate {
         
         let person = Person(name: "沒有名字", image: imageName)
         people.append(person)
+        save()
         collectionView.reloadData()
         
         dismiss(animated: true)
@@ -118,6 +135,18 @@ extension ViewController: UIImagePickerControllerDelegate {
         print("getDocumentsDirectory方法 paths", paths)
         print("getDocumentsDirectory方法 paths[0]", paths[0])
         return paths[0]
+    }
+    
+    // 存入UserDefault
+    func save() {
+        let jsonEncode = JSONEncoder()
+        
+        if let saveData = try? jsonEncode.encode(people) {
+            let defaults = UserDefaults.standard
+            defaults.set(saveData, forKey: "people")
+        } else {
+            print("Failed to save people.")
+        }
     }
 }
 

@@ -19,7 +19,7 @@ class PersonCell: UICollectionViewCell {
         setupBorderStyle()
     }
     
-    func setupAutoLayout() {1
+    func setupAutoLayout() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         name.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

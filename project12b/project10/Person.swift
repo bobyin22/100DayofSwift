@@ -7,7 +7,9 @@
 
 import UIKit
 
-class Person: NSObject {
+// 繼承Codable協議，不相容Objectivce-C
+// 繼承NSCoding協議才相容Objectivce-C
+class Person: NSObject, Codable {
     var name: String
     var image: String
     

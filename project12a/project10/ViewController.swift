@@ -14,6 +14,14 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
+        
+        // 當App一開啟讀取UserDefault資料
+        let defaults = UserDefaults.standard
+        if let savePeople = defaults.object(forKey: "people") as? Data {
+            if let decodePeople = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(savePeople) as? [Person] {
+                people = decodePeople
+            }
+        }
     }
     
 
@@ -54,6 +62,7 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
             ac.addAction(UIAlertAction(title: "OK", style: .default) { [weak self, weak ac] _ in
                 guard let newName = ac?.textFields?[0].text, let self = self else { return }
                 person.name = newName
+                self.save()     //存入資料
                 self.collectionView.reloadData()
             })
             
@@ -108,6 +117,7 @@ extension ViewController: UIImagePickerControllerDelegate {
         
         let person = Person(name: "沒有名字", image: imageName)
         people.append(person)
+        save()
         collectionView.reloadData()
         
         dismiss(animated: true)
@@ -118,6 +128,15 @@ extension ViewController: UIImagePickerControllerDelegate {
         print("getDocumentsDirectory方法 paths", paths)
         print("getDocumentsDirectory方法 paths[0]", paths[0])
         return paths[0]
+    }
+    
+    
+    // UserDefault 存
+    func save() {
+        if let saveData = try? NSKeyedArchiver.archivedData(withRootObject: people, requiringSecureCoding: false) {
+            let defaults = UserDefaults.standard
+            defaults.set(saveData, forKey: "people")
+        }
     }
 }
 

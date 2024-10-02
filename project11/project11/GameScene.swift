@@ -16,11 +16,15 @@ class GameScene: SKScene {
     
     var score = 0 {
         didSet {
+            if score == 5 {
+                showWinMessage()
+            }
             scoreLabel.text = "Score: \(score)"
         }
     }
     
     var editLabel: SKLabelNode!
+    var gameWinLabel: SKLabelNode!
     
     var editingMode: Bool = false {
         didSet {
@@ -67,6 +71,7 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if score == 5 { return }
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
         let object = nodes(at: location)
@@ -86,6 +91,7 @@ class GameScene: SKScene {
                 box.position = location
                 box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
                 box.physicsBody?.isDynamic = false
+                box.name = "box"
                 addChild(box)
             } else {
                 let ball = SKSpriteNode(imageNamed: ballArray.randomElement()!)
@@ -136,11 +142,23 @@ class GameScene: SKScene {
         let spinForever = SKAction.repeatForever(spin)
         slotGlow.run(spinForever)
     }
+    
+    func showWinMessage() {
+        gameWinLabel = SKLabelNode(fontNamed: "Chalkduster")
+        gameWinLabel.text = "You Win"
+        gameWinLabel.fontColor = .systemYellow
+        gameWinLabel.horizontalAlignmentMode = .center
+        gameWinLabel.position = CGPoint(x: UIScreen.main.bounds.width/2, y: 700)
+        addChild(gameWinLabel)
+    }
 }
 
 extension GameScene: SKPhysicsContactDelegate {
     //非Delegate，自己建立的
     func collision(between ball: SKNode, object: SKNode) {
+        if object.name == "box" {
+            object.removeFromParent()
+        }
         if object.name == "good" {
             destroy(ball: ball)
             score += 1
@@ -172,3 +190,7 @@ extension GameScene: SKPhysicsContactDelegate {
         }
     }
 }
+
+// Challenge3
+// 球碰到box，box要removeParent
+// 只給按下5次球，第六次按下不產生球

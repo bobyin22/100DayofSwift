@@ -54,25 +54,55 @@ class ViewController: UIViewController {
         } else {
             calculateMinusScoreAndPlayTime()
             popFaultMessage()
+            print("testlimit是", self.testlimit)
             
             // Project 12 添加上檢測 UserDefault用
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 if self.testlimit == 0 {
                     self.popStopMessage()
+                    
+                    //存UserDefault
+                    let userDefaultsHighestScore = self.defaults.integer(forKey: "HighestScore") as? Int
+                    //如果目前分數有比UserDefault大，要更新UserDefault值
+                    if userDefaultsHighestScore == 0 {
+                        self.defaults.set(self.score, forKey: "HighestScore")
+                    } else {
+                        if let userDefaultsHighestScore = userDefaultsHighestScore {
+                            if self.score > userDefaultsHighestScore {
+                                self.defaults.set(self.score, forKey: "HighestScore")
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                    self.newRecordMessage()
+                                    print("比之前分數高")
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
     }
     
     func checkBtnStatus() {
+        print("testlimit是", testlimit)
         if testlimit == 0 {
             popStopMessage()
+            
             //存UserDefault
-            guard let userDefaultsHighestScore = defaults.array(forKey: "HighestScore") as? Int ?? nil else { return }
+            let userDefaultsHighestScore = defaults.integer(forKey: "HighestScore") as? Int ?? nil
             //如果目前分數有比UserDefault大，要更新UserDefault值
-            if score > userDefaultsHighestScore || userDefaultsHighestScore == nil{
+            if userDefaultsHighestScore == nil {
                 defaults.set(score, forKey: "HighestScore")
+            } else {
+                if let userDefaultsHighestScore = userDefaultsHighestScore {
+                    if score > userDefaultsHighestScore {
+                        defaults.set(score, forKey: "HighestScore")
+                        newRecordMessage()
+                        print("比之前分數高")
+                    }
+                }
             }
+            
         } else {
             calculatePlusSocreAndPlayTime()
             popRightMessage()
@@ -106,6 +136,16 @@ class ViewController: UIViewController {
     
     func popStopMessage() {
         myAlert(title: "不能玩了", message: "非付費只能玩10次", from: self, actionTitle: "前往付費", handler: { 
+            self.setupQuesionUI()
+        })
+        
+        button1.isEnabled = false
+        button2.isEnabled = false
+        button3.isEnabled = false
+    }
+    
+    func newRecordMessage() {
+        myAlert(title: "破紀錄\(score)分", message: "比之前分數高喔", from: self, actionTitle: "OK", handler: {
             self.setupQuesionUI()
         })
         

@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     var testlimit = 10
     var isGuessRight: Bool?
     let defaults = UserDefaults.standard
+    var highScore = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,7 @@ class ViewController: UIViewController {
         button3.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
         setupQuesionUI()
         getWhereUserDefaultFile()
+        highScore = defaults.integer(forKey: "HighestScore")
     }
     
     
@@ -53,32 +55,23 @@ class ViewController: UIViewController {
             checkBtnStatus()
         } else {
             calculateMinusScoreAndPlayTime()
-            popFaultMessage()
             print("testlimit是", self.testlimit)
             
-            // Project 12 添加上檢測 UserDefault用
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                if self.testlimit == 0 {
-                    self.popStopMessage()
-                    
+            if testlimit == 0 {
+                self.popStopMessage()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     //存UserDefault
-                    let userDefaultsHighestScore = self.defaults.integer(forKey: "HighestScore") as? Int
-                    //如果目前分數有比UserDefault大，要更新UserDefault值
-                    if userDefaultsHighestScore == 0 {
-                        self.defaults.set(self.score, forKey: "HighestScore")
-                    } else {
-                        if let userDefaultsHighestScore = userDefaultsHighestScore {
-                            if self.score > userDefaultsHighestScore {
-                                self.defaults.set(self.score, forKey: "HighestScore")
-                                
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                    self.newRecordMessage()
-                                    print("比之前分數高")
-                                }
-                            }
-                        }
+                    let userDefaultsHighestScore = self.defaults.integer(forKey: "HighestScore")
+                    //如果目前分数有比UserDefault大，要更新UserDefault值
+                    if self.score > self.highScore {
+                        
+                        self.newRecordMessage()
+                        print("比之前分数高")
                     }
                 }
+            } else {
+                popFaultMessage()
             }
         }
     }
@@ -88,18 +81,14 @@ class ViewController: UIViewController {
         if testlimit == 0 {
             popStopMessage()
             
-            //存UserDefault
-            let userDefaultsHighestScore = defaults.integer(forKey: "HighestScore") as? Int ?? nil
-            //如果目前分數有比UserDefault大，要更新UserDefault值
-            if userDefaultsHighestScore == nil {
-                defaults.set(score, forKey: "HighestScore")
-            } else {
-                if let userDefaultsHighestScore = userDefaultsHighestScore {
-                    if score > userDefaultsHighestScore {
-                        defaults.set(score, forKey: "HighestScore")
-                        newRecordMessage()
-                        print("比之前分數高")
-                    }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                //存UserDefault
+                let userDefaultsHighestScore = self.defaults.integer(forKey: "HighestScore")
+                //如果目前分数有比UserDefault大，要更新UserDefault值
+                if self.score > userDefaultsHighestScore {
+                    self.defaults.set(self.score, forKey: "HighestScore")
+                    self.newRecordMessage()
+                    print("比之前分数高")
                 }
             }
             

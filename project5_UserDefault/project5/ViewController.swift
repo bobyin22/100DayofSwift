@@ -12,12 +12,16 @@ class ViewController: UITableViewController {
     var allWords = [String]()
     var usedWords = [String]()
     
+    let defaults = UserDefaults.standard
+    var answerArray: [String] = []
+    
     //find path
     //load content rxt file
     //split it arrayd
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getWhereUserDefaultFile()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForAnswer))
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(promptForRefresh))
@@ -103,6 +107,11 @@ class ViewController: UITableViewController {
                     print("usedWords: \(usedWords)")
                     //tableView.reloadData()              //reload讓資料顯示UI
                     
+                    //存入UserDefault
+                    var userDefaultValue = defaults.array(forKey: "SavedAnswerArray") as? [String] ?? []
+                    userDefaultValue.insert(answer, at: 0)
+                    defaults.setValue(userDefaultValue, forKey: "SavedAnswerArray")
+                    
                     let indexPath = IndexPath(row: 0, section: 0)               //自行建立IndexPath型別
                     tableView.insertRows(at: [indexPath], with: .automatic)     //插入tableView位置
                    return                                                       //全對，會走到這，然後不跳Alert
@@ -175,12 +184,37 @@ class ViewController: UITableViewController {
 
 extension ViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return usedWords.count
+        let array = defaults.array(forKey: "SavedAnswerArray") as? [String] ?? []
+        return array.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Word", for: indexPath)
-        cell.textLabel?.text = usedWords[indexPath.row]
+        let array = defaults.array(forKey: "SavedAnswerArray") as? [String] ?? []
+        cell.textLabel?.text = array[indexPath.row]
         return cell
     }
+    
+    func getWhereUserDefaultFile() {
+        // 獲取應用程序的沙盒目錄
+        if let applibraryDDir = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first {
+                    
+              // 拼接 Preferences 子目錄
+              let preferencesDir = applibraryDDir.appendingPathComponent("Preferences")
+                    
+              // 檢查 Preferences 目錄是否存在
+              if FileManager.default.fileExists(atPath: preferencesDir.path) {
+                    print("UserDefaults 存儲位置：\(preferencesDir.path)")
+              } else {
+                    print("UserDefaults 存儲位置未找到")
+              }
+         } else {
+            print("無法獲取應用程序沙盒目錄")
+         }
+    }
 }
+
+
+// UserDefault Challenge 步驟
+// 單字符合，存UserDefault
+// 開啟App TableView 顯示那些UserDefault

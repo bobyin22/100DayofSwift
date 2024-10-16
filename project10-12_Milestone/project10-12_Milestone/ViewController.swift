@@ -2,20 +2,31 @@
 //  ViewController.swift
 //  project10-12_Milestone
 //
-//  Created by Bob on 2024/10/16.
+//  Created by 邱慧珊 on 2024/10/17.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
+    // MARK: - Table view data source
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        3
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = "123"
+        return cell
+    }
 
 }
+
 
 /*
  Challenge 挑戰
@@ -37,4 +48,3 @@ class ViewController: UIViewController {
  You’ll need to design your detail view controller using Interface Builder, then call instantiateViewController to load it when a table view row is tapped.
  你需要使用 Interface Builder 設計你的細節檢視控制器，然後在點擊表格檢視行時調用 instantiateViewController 來載入它。
  */
-

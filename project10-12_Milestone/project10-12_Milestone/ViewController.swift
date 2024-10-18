@@ -11,6 +11,12 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Take Photo App"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(openCamera))
+    }
+    
+    @objc func openCamera(){
+        
     }
 
     // MARK: - Table view data source

@@ -11,27 +11,32 @@
         <scene sceneID="b5A-aU-G5s">
             <objects>
                 <tableViewController id="Mxa-FA-qxx" customClass="ViewController" customModule="project10_12_Milestone" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="iBe-cE-9n7">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="iBe-cE-9n7">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="7fp-AB-PTz" style="IBUITableViewCellStyleDefault" id="8x7-Nk-DE4">
-                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="50" id="8x7-Nk-DE4" customClass="PhotoTableViewCell" customModule="project10_12_Milestone" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="393" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8x7-Nk-DE4" id="d56-hC-mfd">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7fp-AB-PTz">
-                                            <rect key="frame" x="20" y="0.0" width="353" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FL9-UW-gAl">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
+                                        </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="FL9-UW-gAl" firstAttribute="top" secondItem="d56-hC-mfd" secondAttribute="top" id="3uI-Xq-nnZ"/>
+                                        <constraint firstItem="FL9-UW-gAl" firstAttribute="leading" secondItem="d56-hC-mfd" secondAttribute="leading" id="EYt-GV-251"/>
+                                        <constraint firstAttribute="trailing" secondItem="FL9-UW-gAl" secondAttribute="trailing" id="Jz8-vq-aLH"/>
+                                        <constraint firstAttribute="bottom" secondItem="FL9-UW-gAl" secondAttribute="bottom" id="ukX-8D-z0T"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="photoImageView" destination="FL9-UW-gAl" id="SbE-ft-jIo"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -14,6 +14,7 @@
 		A8FC68DF2CBF36130082ADB0 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A8FC68DE2CBF36130082ADB0 /* Base */; };
 		A8FC68E72CBF36F80082ADB0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FC68E62CBF36F80082ADB0 /* DetailViewController.swift */; };
 		A8FC68EB2CC086FE0082ADB0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FC68EA2CC086FE0082ADB0 /* ViewController.swift */; };
+		A8FC68ED2CC475CE0082ADB0 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FC68EC2CC475CE0082ADB0 /* PhotoTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		A8FC68E02CBF36130082ADB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8FC68E62CBF36F80082ADB0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A8FC68EA2CC086FE0082ADB0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A8FC68EC2CC475CE0082ADB0 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				A8FC68D42CBF36110082ADB0 /* SceneDelegate.swift */,
 				A8FC68EA2CC086FE0082ADB0 /* ViewController.swift */,
 				A8FC68E62CBF36F80082ADB0 /* DetailViewController.swift */,
+				A8FC68EC2CC475CE0082ADB0 /* PhotoTableViewCell.swift */,
 				A8FC68D82CBF36110082ADB0 /* Main.storyboard */,
 				A8FC68DB2CBF36130082ADB0 /* Assets.xcassets */,
 				A8FC68DD2CBF36130082ADB0 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8FC68ED2CC475CE0082ADB0 /* PhotoTableViewCell.swift in Sources */,
 				A8FC68EB2CC086FE0082ADB0 /* ViewController.swift in Sources */,
 				A8FC68D32CBF36110082ADB0 /* AppDelegate.swift in Sources */,
 				A8FC68D52CBF36110082ADB0 /* SceneDelegate.swift in Sources */,

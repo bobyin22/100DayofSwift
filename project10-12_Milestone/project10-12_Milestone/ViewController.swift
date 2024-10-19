@@ -10,13 +10,16 @@ import UIKit
 class ViewController: UITableViewController {
 
     let vc = UIImagePickerController()
+    var tempPhoto = UIImage()
+    var tableviewCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         title = "Take Photo App"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(openCamera))
         
-        
+        tempPhoto = UIImage(systemName: "pencil")!
     }
     
     @objc func openCamera(){
@@ -29,12 +32,13 @@ class ViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        return tableviewCount
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = "123"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PhotoTableViewCell
+        //cell.textLabel?.text = "123"
+        cell.photoImageView.image = tempPhoto
         return cell
     }
 
@@ -50,6 +54,11 @@ extension ViewController: UINavigationControllerDelegate, UIImagePickerControlle
             print("No image found")
             return
         }
+        
+        tableviewCount += 1
+        tempPhoto = image
+        tableView.reloadData()
+        
 
         // print out the image size as a test
         print(image.size)

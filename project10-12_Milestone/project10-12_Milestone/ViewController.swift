@@ -9,14 +9,21 @@ import UIKit
 
 class ViewController: UITableViewController {
 
+    let vc = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Take Photo App"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(openCamera))
+        
+        
     }
     
     @objc func openCamera(){
-        
+        vc.sourceType = .camera
+        vc.allowsEditing = true
+        vc.delegate = self
+        present(vc, animated: true)
     }
 
     // MARK: - Table view data source
@@ -31,6 +38,24 @@ class ViewController: UITableViewController {
         return cell
     }
 
+}
+
+extension ViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    // MARK: ImagePickerController Delegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+
+        guard let image = info[.editedImage] as? UIImage else {
+            print("No image found")
+            return
+        }
+
+        // print out the image size as a test
+        print(image.size)
+    }
+    
+    
 }
 
 

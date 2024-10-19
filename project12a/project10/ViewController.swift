@@ -9,8 +9,10 @@ import UIKit
 
 class ViewController: UICollectionViewController, UINavigationControllerDelegate {
 
+    // MARK: Properties
     var people = [Person]()
     
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
@@ -24,8 +26,16 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         }
     }
     
+    // 點擊barButtonItem動作
+    @objc func addNewPerson() {
+        let picker = UIImagePickerController()
+        picker.sourceType = .camera
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
+    }
 
-    
+    // MARK: CollectionView Delegate
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return people.count
     }
@@ -92,17 +102,13 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         self.present(alert, animated: true)
     }
     
-    @objc func addNewPerson() {
-        let picker = UIImagePickerController()
-        picker.sourceType = .camera
-        picker.allowsEditing = true
-        picker.delegate = self
-        present(picker, animated: true)
-    }
+
 }
 
 
 extension ViewController: UIImagePickerControllerDelegate {
+    
+    // MARK: ImagePickerController Delegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else { return }
         

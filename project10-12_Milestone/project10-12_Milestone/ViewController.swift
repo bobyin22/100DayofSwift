@@ -10,7 +10,7 @@ import UIKit
 class ViewController: UITableViewController {
 
     let vc = UIImagePickerController()
-    var tempPhoto = UIImage()
+    var tempPhoto:[UIImage] = []
     var tableviewCount = 0
     
     override func viewDidLoad() {
@@ -19,7 +19,7 @@ class ViewController: UITableViewController {
         title = "Take Photo App"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(openCamera))
         
-        tempPhoto = UIImage(systemName: "pencil")!
+        //tempPhoto = UIImage(systemName: "pencil")!
     }
     
     @objc func openCamera(){
@@ -38,8 +38,14 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PhotoTableViewCell
         //cell.textLabel?.text = "123"
-        cell.photoImageView.image = tempPhoto
+        cell.photoImageView.image = tempPhoto[indexPath.row]
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        detailVC.image = tempPhoto[indexPath.row]  // 只傳遞圖片
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
 
 }
@@ -56,7 +62,7 @@ extension ViewController: UINavigationControllerDelegate, UIImagePickerControlle
         }
         
         tableviewCount += 1
-        tempPhoto = image
+        tempPhoto.append(image)
         tableView.reloadData()
         
 

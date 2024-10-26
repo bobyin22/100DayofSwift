@@ -46,6 +46,10 @@ class ViewController: UITableViewController {
         let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         detailVC.image = tempPhoto[indexPath.row]  // 只傳遞圖片
         self.navigationController?.pushViewController(detailVC, animated: true)
+        
+        //detailVC.navigationItem.rightBarButtonItem = detailVC.captionBtn
+//        let captionBtn : UIBarButtonItem = UIBarButtonItem(title: "caption", style: UIBarButtonItem.Style.plain, target: self, action: Selector(""))
+//        self.navigationController?.navigationItem.rightBarButtonItem = captionBtn
     }
 
 }

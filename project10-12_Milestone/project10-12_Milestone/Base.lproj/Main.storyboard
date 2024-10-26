@@ -84,13 +84,14 @@
                             <constraint firstItem="8Iw-Z6-OJE" firstAttribute="bottom" secondItem="5HI-hv-HSR" secondAttribute="bottom" id="onH-OQ-PyU"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Wo5-VR-Jmy"/>
                     <connections>
                         <outlet property="imageView" destination="5HI-hv-HSR" id="wUf-oE-dnz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NDI-Xn-HZZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2844" y="-9"/>
+            <point key="canvasLocation" x="3770.2290076335876" y="-9.1549295774647899"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Wzr-w5-yTf">

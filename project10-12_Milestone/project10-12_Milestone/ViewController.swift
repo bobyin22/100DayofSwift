@@ -12,6 +12,7 @@ class ViewController: UITableViewController {
     let vc = UIImagePickerController()
     var tempPhoto:[UIImage] = []
     var tableviewCount = 0
+    var detailVC = DetailViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +20,7 @@ class ViewController: UITableViewController {
         title = "Take Photo App"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(openCamera))
         
-        //tempPhoto = UIImage(systemName: "pencil")!
+        detailVC.delegate = self
     }
     
     @objc func openCamera(){
@@ -39,6 +40,7 @@ class ViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PhotoTableViewCell
         //cell.textLabel?.text = "123"
         cell.photoImageView.image = tempPhoto[indexPath.row]
+        cell.photoLabel.text = "初始值" // 设置初始值
         return cell
     }
     
@@ -46,10 +48,6 @@ class ViewController: UITableViewController {
         let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         detailVC.image = tempPhoto[indexPath.row]  // 只傳遞圖片
         self.navigationController?.pushViewController(detailVC, animated: true)
-        
-        //detailVC.navigationItem.rightBarButtonItem = detailVC.captionBtn
-//        let captionBtn : UIBarButtonItem = UIBarButtonItem(title: "caption", style: UIBarButtonItem.Style.plain, target: self, action: Selector(""))
-//        self.navigationController?.navigationItem.rightBarButtonItem = captionBtn
     }
 
 }
@@ -75,6 +73,17 @@ extension ViewController: UINavigationControllerDelegate, UIImagePickerControlle
     }
     
     
+}
+
+extension ViewController: PassNameDelegate {
+    func passName(with name: String) {
+            // 假设你想要在某个特定的 indexPath 更新 cell
+            let indexPath = IndexPath(row: 0, section: 0) // 这里可以根据需要修改
+            if let cell = tableView.cellForRow(at: indexPath) as? PhotoTableViewCell {
+                cell.photoLabel.text = name // 更新 photoLabel
+            }
+            
+        }
 }
 
 

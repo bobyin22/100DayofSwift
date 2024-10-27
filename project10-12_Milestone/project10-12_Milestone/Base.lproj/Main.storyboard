@@ -49,6 +49,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="photoImageView" destination="FL9-UW-gAl" id="SbE-ft-jIo"/>
+                                    <outlet property="photoLabel" destination="4dz-p1-ti8" id="O7w-Yt-FCg"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

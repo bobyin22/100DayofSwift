@@ -7,10 +7,16 @@
 
 import UIKit
 
+protocol PassNameDelegate: AnyObject {
+    func passName(with name: String)
+}
+
 class DetailViewController: UIViewController {
 
     var image:UIImage?
     @IBOutlet weak var imageView: UIImageView!
+    
+    weak var delegate: PassNameDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +36,24 @@ class DetailViewController: UIViewController {
     @objc
     func tapCaptionBtn() {
         print("123")
+        popAlert()
     }
     
+    func popAlert() {
+        let controller = UIAlertController(title: "命名", message: "請輸入你想要此張照片的名字", preferredStyle: .alert)
+        controller.addTextField { textField in
+           textField.placeholder = "請輸入照片名"
+            textField.keyboardType = UIKeyboardType.default
+        }
+        let okAction = UIAlertAction(title: "OK", style: .default) { [unowned controller] _ in
+           let name = controller.textFields?[0].text
+           print(name)
+            self.delegate?.passName(with: name!)
+        }
+        controller.addAction(okAction)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel)
+        controller.addAction(cancelAction)
+        present(controller, animated: true)
+    }
 
 }

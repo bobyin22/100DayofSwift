@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PassNameDelegate: AnyObject {
-    func passName(with name: String)
+    func passName(with name: String, indexPath: IndexPath)
 }
 
 class DetailViewController: UIViewController {
@@ -17,6 +17,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     weak var delegate: PassNameDelegate?
+    var indexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +36,6 @@ class DetailViewController: UIViewController {
     
     @objc
     func tapCaptionBtn() {
-        print("123")
         popAlert()
     }
     
@@ -48,7 +48,8 @@ class DetailViewController: UIViewController {
         let okAction = UIAlertAction(title: "OK", style: .default) { [unowned controller] _ in
            let name = controller.textFields?[0].text
            print(name)
-            self.delegate?.passName(with: name!)
+            guard let indexPath = self.indexPath else { return }
+            self.delegate?.passName(with: name!, indexPath: indexPath)
         }
         controller.addAction(okAction)
         let cancelAction = UIAlertAction(title: "取消", style: .cancel)

@@ -2,7 +2,7 @@
 //  DetailViewController.swift
 //  project10-12_Milestone
 //
-//  Created by 邱慧珊 on 2024/10/16.
+//  Created by Bob on 2024/10/16.
 //
 
 import UIKit

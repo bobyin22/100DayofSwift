@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  project10-12_Milestone
 //
-//  Created by 邱慧珊 on 2024/10/17.
+//  Created by Bob on 2024/10/17.
 //
 
 import UIKit
@@ -10,8 +10,7 @@ import UIKit
 class ViewController: UITableViewController {
 
     let vc = UIImagePickerController()
-    var tempPhoto:[UIImage] = []
-    var tableviewCount = 0
+    var photos:[Photo] = []
     var detailVC = DetailViewController()
     
     override func viewDidLoad() {
@@ -19,8 +18,6 @@ class ViewController: UITableViewController {
         view.backgroundColor = .white
         title = "Take Photo App"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(openCamera))
-        
-        //detailVC.delegate = self
     }
     
     @objc func openCamera(){
@@ -33,24 +30,27 @@ class ViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableviewCount
+        return photos.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PhotoTableViewCell
-        //cell.textLabel?.text = "123"
-        cell.photoImageView.image = tempPhoto[indexPath.row]
-        cell.photoLabel.text = "初始值" // 设置初始值
+        
+        let photo = photos[indexPath.row]
+        cell.photoLabel.text = photo.name
+        
+        let path = getDocumentsDirectory().appendingPathComponent(photo.image)
+        cell.photoImageView.image = UIImage(contentsOfFile: path.path)
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        detailVC.image = tempPhoto[indexPath.row]  // 只傳遞圖片
-        detailVC.indexPath = indexPath
-        detailVC.delegate = self
-        self.navigationController?.pushViewController(detailVC, animated: true)
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+//        detailVC.image = tempPhoto[indexPath.row]  // 只傳遞圖片
+//        detailVC.indexPath = indexPath
+//        detailVC.delegate = self
+//        self.navigationController?.pushViewController(detailVC, animated: true)
+//    }
 
 }
 
@@ -65,15 +65,39 @@ extension ViewController: UINavigationControllerDelegate, UIImagePickerControlle
             return
         }
         
-        tableviewCount += 1
-        tempPhoto.append(image)
+        //建立一個獨一無二的UUID
+        let imageName = UUID().uuidString
+        //拿取URL
+        /// appendingPathComponent
+        /// 這個方法用於將一個路徑組件（在這裡是 imageName）附加到已有的路徑（在這裡是文檔目錄的路徑）上，形成一個完整的文件路徑。
+        /// 這樣做的目的是為了確保圖片能夠正確地儲存在應用程序的文檔目錄中，並且每個圖片都有一個唯一的名稱（UUID）。
+        let imagePath = getDocumentsDirectory().appendingPathComponent(imageName)
+        //把URL轉成Jpeg檔案
+        if let jpegData = image.jpegData(compressionQuality: 0.8) {
+            try? jpegData.write(to: imagePath)
+        }
+        //存到UserDefault
+        let photo = Photo(name: "照片", image: imageName)
+        photos.append(photo)
+        save()
+        //畫面UI reload
         tableView.reloadData()
-        
-
-        // print out the image size as a test
         print(image.size)
     }
     
+    // 自定義拿取手機內URL資料
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    // 自定義存入UserDefautl
+    func save() {
+        if let saveData = try? NSKeyedArchiver.archivedData(withRootObject: photos, requiringSecureCoding: false) {
+            let defaults = UserDefaults.standard
+            defaults.set(saveData, forKey: "Photo")
+        }
+    }
     
 }
 
